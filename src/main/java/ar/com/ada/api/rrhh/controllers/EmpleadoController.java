@@ -30,7 +30,7 @@ public class EmpleadoController {
     } 
 
     @GetMapping("/empleados/{id}")
-    public ResponseEntity<Empleado> getHuespedById(@PathVariable int id) {
+    public ResponseEntity<Empleado> getEmpleadoById(@PathVariable int id) {
         Empleado e = empleadoService.buscarPorId(id);
 
         if (e == null) {
@@ -59,6 +59,15 @@ public class EmpleadoController {
             return ResponseEntity.badRequest().body(r);
         }
 
+    }
+
+    @GetMapping("/empleados/categorias/{categoriaId}")
+    public List<Empleado> getEmpleadosByCategoriaId(@PathVariable int categoriaId) {
+        List<Empleado> le;
+        
+            le = empleadoService.buscarEmpleadosPorCategoriaId(categoriaId);
+        
+        return le;
     }
 
 }
