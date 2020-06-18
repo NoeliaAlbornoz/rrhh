@@ -70,4 +70,88 @@ public class EmpleadoController {
         return le;
     }
 
+    @PutMapping("/empleados/{id}")
+    public ResponseEntity<?> putEmpleado(@PathVariable int id, @RequestBody Empleado req) {
+
+        GenericResponse r = new GenericResponse();
+
+        Empleado empleadoOriginal = empleadoService.buscarPorId(id);
+
+        if (empleadoOriginal == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        boolean resultado = false;
+        resultado = empleadoService.actualizarEmpleado(empleadoOriginal, req);
+
+        if (resultado) {
+            r.isOk = true;
+            r.id = req.getEmpleadoId();
+            r.message = "Empleado actualizado con éxito.";
+            return ResponseEntity.ok(r);
+        } else {
+
+            r.isOk = false;
+            r.message = "No se pudo actualizar el empleado.";
+
+            return ResponseEntity.badRequest().body(r);
+        }
+
+    }
+
+    @PutMapping("/empleados/{id}/sueldos")
+    public ResponseEntity<?> putEmpleadoSueldo(@PathVariable int id, @RequestBody Empleado req) {
+
+        GenericResponse r = new GenericResponse();
+
+        Empleado empleadoOriginal = empleadoService.buscarPorId(id);
+
+        if (empleadoOriginal == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        boolean resultado = false;
+        resultado = empleadoService.actualizarSueldo(empleadoOriginal, req);
+
+        if (resultado) {
+            r.isOk = true;
+            r.id = req.getEmpleadoId();
+            r.message = "Empleado actualizado con éxito.";
+            return ResponseEntity.ok(r);
+        } else {
+
+            r.isOk = false;
+            r.message = "No se pudo actualizar el empleado.";
+
+            return ResponseEntity.badRequest().body(r);
+        }
+
+    }
+
+    @PutMapping("/empleados/{id}/estados")
+    public ResponseEntity<?> putEmpleadoEstado(@PathVariable int id, @RequestBody Empleado req) {
+
+        GenericResponse r = new GenericResponse();
+
+        Empleado empleadoOriginal = empleadoService.buscarPorId(id);
+
+        if (empleadoOriginal == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        boolean resultado = false;
+        resultado = empleadoService.actualizarEstado(empleadoOriginal, req);
+
+        if (resultado) {
+            r.isOk = true;
+            r.id = req.getEmpleadoId();
+            r.message = "Empleado dado de baja con éxito.";
+            return ResponseEntity.ok(r);
+        } else {
+
+            r.isOk = false;
+            r.message = "No se pudo dar de baja al empleado.";
+
+            return ResponseEntity.badRequest().body(r);
+        }
+
+    }
+
 }
