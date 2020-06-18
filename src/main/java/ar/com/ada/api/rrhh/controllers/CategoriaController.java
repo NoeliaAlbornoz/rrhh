@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ar.com.ada.api.rrhh.entities.*;
 import ar.com.ada.api.rrhh.models.response.GenericResponse;
-import ar.com.ada.api.rrhh.services.CategoriaService;
+import ar.com.ada.api.rrhh.services.*;
 
 @RestController
 public class CategoriaController {
