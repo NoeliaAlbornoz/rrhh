@@ -51,6 +51,11 @@ public class EmpleadoService {
 
         return empleadoRepo.findByEmpleadoId(empleadoId);
     }
+
+    public List<Empleado> buscarEmpleadosPorCategoriaId(int categoriaId) {
+
+        return empleadoRepo.findAllByCategoriaId(categoriaId);
+    }
     
 }
 
