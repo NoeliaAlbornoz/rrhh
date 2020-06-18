@@ -1,5 +1,6 @@
 package ar.com.ada.api.rrhh.services;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +56,39 @@ public class EmpleadoService {
     public List<Empleado> buscarEmpleadosPorCategoriaId(int categoriaId) {
 
         return empleadoRepo.findAllByCategoriaId(categoriaId);
+    }
+
+    public boolean actualizarEmpleado(Empleado empleadoOriginal, Empleado empleadoConInfoNueva) {
+
+        empleadoOriginal.setNombre(empleadoConInfoNueva.getNombre());
+        empleadoOriginal.setEdad(empleadoConInfoNueva.getEdad());
+        empleadoOriginal.getCategoria().setCategoriaId(empleadoConInfoNueva.getCategoria().getCategoriaId());
+        empleadoOriginal.setFechaAlta(empleadoConInfoNueva.getFechaAlta());
+        empleadoOriginal.setFechaBaja(empleadoConInfoNueva.getFechaBaja());
+
+        grabar(empleadoOriginal);
+
+        return true;
+    }
+
+    public boolean actualizarSueldo(Empleado empleadoOriginal, Empleado empleadoConInfoNueva) {
+
+        empleadoOriginal.setSueldo(empleadoConInfoNueva.getSueldo());
+        
+        grabar(empleadoOriginal);
+
+        return true;
+    }
+
+    public boolean actualizarEstado(Empleado empleadoOriginal, Empleado empleadoConInfoNueva) {
+
+        empleadoOriginal.setEstadoId(empleadoConInfoNueva.getEstadoId());
+        empleadoOriginal.setFechaBaja(new Date());
+
+        grabar(empleadoOriginal);
+
+        return true;
+
     }
     
 }
