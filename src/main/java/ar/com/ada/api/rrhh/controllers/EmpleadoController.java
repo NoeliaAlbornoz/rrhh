@@ -14,7 +14,7 @@ import ar.com.ada.api.rrhh.services.*;
 public class EmpleadoController {
 
     @Autowired
-    EmpleadoService empleadoService;
+    protected EmpleadoService empleadoService;
 
     @GetMapping("/empleados")
     public ResponseEntity<?> listarEmpleado(){

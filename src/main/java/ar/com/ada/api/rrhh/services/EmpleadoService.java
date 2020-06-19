@@ -15,7 +15,7 @@ import ar.com.ada.api.rrhh.repos.EmpleadoRepository;
 public class EmpleadoService {
 
     @Autowired
-    EmpleadoRepository empleadoRepo;
+    protected EmpleadoRepository empleadoRepo;
 
     public List<Empleado> getEmpleados() {
 

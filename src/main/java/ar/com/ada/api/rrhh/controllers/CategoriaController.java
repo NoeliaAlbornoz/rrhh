@@ -13,7 +13,7 @@ import ar.com.ada.api.rrhh.services.*;
 public class CategoriaController {
 
     @Autowired
-    CategoriaService categoriaService;
+    protected CategoriaService categoriaService;
 
     @GetMapping("/categorias")
     public ResponseEntity<List<Categoria>> listarCategorias() {

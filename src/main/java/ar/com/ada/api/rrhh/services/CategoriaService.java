@@ -15,7 +15,7 @@ import ar.com.ada.api.rrhh.repos.CategoriaRepository;
 public class CategoriaService {
 
     @Autowired
-    CategoriaRepository categoriaRepo;
+    protected CategoriaRepository categoriaRepo;
 
     public List<Categoria> getCategorias() {
 
