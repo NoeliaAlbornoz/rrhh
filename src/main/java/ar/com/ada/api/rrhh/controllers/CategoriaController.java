@@ -16,6 +16,14 @@ public class CategoriaController {
     CategoriaService categoriaService;
 
     @GetMapping("/categorias")
+    public ResponseEntity<List<Categoria>> listarCategorias() {
+        
+        return ResponseEntity.ok(categoriaService.getCategorias());
+ 
+    }
+
+    //GET considera posible pasar nombre por parámetro
+    @GetMapping("/categorias")
     public List<Categoria> getCategorias(@RequestParam(value = "nombre", required = false) String nombre) {
         List<Categoria> lc;
 
@@ -26,8 +34,18 @@ public class CategoriaController {
         }
 
         return lc;
+    } 
+
+    @PostMapping("/categorias")
+    public ResponseEntity<?> crearCategoria(@RequestBody Categoria categoria){
+
+        categoriaService.crearCategoria(categoria);
+
+        return ResponseEntity.ok(categoria);
+        
     }
 
+    //POST con GenericResponse
     @PostMapping("/categorias")
     public ResponseEntity<?> postHuesped(@RequestBody Categoria req) {
 

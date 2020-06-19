@@ -17,6 +17,13 @@ public class EmpleadoController {
     EmpleadoService empleadoService;
 
     @GetMapping("/empleados")
+    public ResponseEntity<?> listarEmpleado(){
+
+        return ResponseEntity.ok(empleadoService.getEmpleados());
+    }
+
+    //GET considera posible pasar nombre por parámetro
+    @GetMapping("/empleados")
     public List<Empleado> getEmpleados(@RequestParam(value = "nombre", required = false) String nombre) {
         List<Empleado> le;
 
@@ -39,6 +46,16 @@ public class EmpleadoController {
         return ResponseEntity.ok(e);
     }
 
+    @PostMapping("/empleados")
+    public ResponseEntity<?> crearEmpleado(@RequestBody Empleado empleado){
+
+        empleadoService.crearEmpleado(empleado);
+
+        return ResponseEntity.ok(empleado.getEmpleadoId());
+
+    }
+
+    //POST con GenericResponse
     @PostMapping("/empleados")
     public ResponseEntity<?> postEmpleado(@RequestBody Empleado req) {
 

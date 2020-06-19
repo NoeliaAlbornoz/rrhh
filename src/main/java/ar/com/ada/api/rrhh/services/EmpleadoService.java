@@ -2,6 +2,7 @@ package ar.com.ada.api.rrhh.services;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -98,6 +99,18 @@ public class EmpleadoService {
 
         return true;
 
+    }
+
+    //Utilizamos directamente el método findById()
+    public Empleado traerEmpledoPorId(int empleadoId){ 
+       
+        Optional<Empleado> eo = empleadoRepo.findById(empleadoId);
+
+        if(eo.isPresent()){
+            
+            return eo.get();
+        }
+        return null;
     }
     
 }

@@ -1,6 +1,8 @@
 package ar.com.ada.api.rrhh.services;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,6 +52,20 @@ public class CategoriaService {
     public Categoria buscarPorId(int categoriaId) {
 
         return categoriaRepo.findByCategoriaId(categoriaId);
+    }
+
+    //Utilizamos directamente el método findById()
+    public List<Empleado> traerEmpleadosPorCategoria(int categoriaId){
+
+        Optional<Categoria> cOptional = categoriaRepo.findById(categoriaId);
+        List<Empleado> listaVacia = new ArrayList<>();
+        
+        if(cOptional.isPresent()){
+
+            return (cOptional.get()).getEmpleados();
+        }
+        return listaVacia;
+
     }
     
 }
