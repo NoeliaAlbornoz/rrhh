@@ -30,11 +30,18 @@ public class EmpleadoService {
 
         if (existe(empleado.getEmpleadoId()))
             return false;
+        
+        activarEmpleado(empleado);
+
+        grabar(empleado);
+        return true;
+    }
+
+    public void activarEmpleado(Empleado empleado) {
 
         empleado.setEstadoId(1);
         empleado.setFechaAlta(new Date());
-        grabar(empleado);
-        return true;
+
     }
 
     public void grabar(Empleado empleado) {
