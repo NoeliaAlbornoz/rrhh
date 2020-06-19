@@ -23,7 +23,7 @@ public class EmpleadoController {
     }
 
     //GET considera posible pasar nombre por parámetro
-    @GetMapping("/empleados")
+    //@GetMapping("/empleados")
     public List<Empleado> getEmpleados(@RequestParam(value = "nombre", required = false) String nombre) {
         List<Empleado> le;
 
@@ -56,7 +56,7 @@ public class EmpleadoController {
     }
 
     //POST con GenericResponse
-    @PostMapping("/empleados")
+    //@PostMapping("/empleados")
     public ResponseEntity<?> postEmpleado(@RequestBody Empleado req) {
 
         GenericResponse r = new GenericResponse();
@@ -143,8 +143,9 @@ public class EmpleadoController {
 
     }
 
+    //Se introduce el cambio de estado desde Frontend
     @PutMapping("/empleados/{id}/estados")
-    public ResponseEntity<?> putEmpleadoEstado(@PathVariable int id, @RequestBody Empleado req) {
+    public ResponseEntity<?> putEmpleadoEstado(@PathVariable int id, @RequestBody int estadoId) {
 
         GenericResponse r = new GenericResponse();
 
@@ -154,11 +155,11 @@ public class EmpleadoController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         boolean resultado = false;
-        resultado = empleadoService.actualizarEstado(empleadoOriginal, req);
+        resultado = empleadoService.actualizarEstado(empleadoOriginal, estadoId);
 
         if (resultado) {
             r.isOk = true;
-            r.id = req.getEmpleadoId();
+            r.id = empleadoOriginal.getEmpleadoId();
             r.message = "Empleado dado de baja con éxito.";
             return ResponseEntity.ok(r);
         } else {
@@ -170,5 +171,34 @@ public class EmpleadoController {
         }
 
     }
+
+    @DeleteMapping("empleados/{id}")
+    public ResponseEntity<?> deleteEmpleado(@PathVariable int id) {
+
+        GenericResponse r = new GenericResponse();
+
+        Empleado empleado = empleadoService.buscarPorId(id);
+
+        if (empleado == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        boolean resultado = false;
+        resultado = empleadoService.baja(empleado);
+
+        if (resultado) {
+            r.isOk = true;
+            r.id = id;
+            r.message = "Empleado dado de baja con éxito.";
+            return ResponseEntity.ok(r);
+        } else {
+
+            r.isOk = false;
+            r.message = "No se pudo dar de baja al empleado.";
+
+            return ResponseEntity.badRequest().body(r);
+        }
+    
+    }
+
 
 }
