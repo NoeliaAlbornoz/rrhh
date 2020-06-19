@@ -23,7 +23,7 @@ public class CategoriaController {
     }
 
     //GET considera posible pasar nombre por parámetro
-    @GetMapping("/categorias")
+    //@GetMapping("/categorias")
     public List<Categoria> getCategorias(@RequestParam(value = "nombre", required = false) String nombre) {
         List<Categoria> lc;
 
@@ -46,8 +46,8 @@ public class CategoriaController {
     }
 
     //POST con GenericResponse
-    @PostMapping("/categorias")
-    public ResponseEntity<?> postHuesped(@RequestBody Categoria req) {
+    //@PostMapping("/categorias")
+    public ResponseEntity<?> postCategoria(@RequestBody Categoria req) {
 
         GenericResponse r = new GenericResponse();
 
