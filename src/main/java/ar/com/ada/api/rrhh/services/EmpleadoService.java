@@ -90,9 +90,9 @@ public class EmpleadoService {
         return true;
     }
 
-    public boolean actualizarEstado(Empleado empleadoOriginal, Empleado empleadoConInfoNueva) {
+    public boolean actualizarEstado(Empleado empleadoOriginal, int estadoId) {
 
-        empleadoOriginal.setEstadoId(empleadoConInfoNueva.getEstadoId());
+        empleadoOriginal.setEstadoId(estadoId);
         empleadoOriginal.setFechaBaja(new Date());
 
         grabar(empleadoOriginal);
@@ -111,6 +111,25 @@ public class EmpleadoService {
             return eo.get();
         }
         return null;
+    }
+
+    public boolean baja(Empleado empleado) {
+
+        actualizarEstado(empleado);
+
+        return true;
+
+    }
+
+    public boolean actualizarEstado(Empleado empleado) {
+
+        empleado.setEstadoId(0);
+        empleado.setFechaBaja(new Date());
+
+        grabar(empleado);
+
+        return true;
+
     }
     
 }
