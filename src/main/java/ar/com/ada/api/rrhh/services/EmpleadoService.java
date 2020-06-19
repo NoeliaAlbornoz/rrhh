@@ -31,6 +31,8 @@ public class EmpleadoService {
         if (existe(empleado.getEmpleadoId()))
             return false;
 
+        empleado.setEstadoId(1);
+        empleado.setFechaAlta(new Date());
         grabar(empleado);
         return true;
     }
