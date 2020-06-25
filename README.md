@@ -1,1 +1,1 @@
-WEB API. Proyecto Spring Boot. RRHH es un sistema de gestión de sueldos por categorías de una planta de empleados. Se realizaron algunas  validaciones y construcción de métodos alternativos en los Repository.
+WEB API. Proyecto Spring Boot. RRHH es un sistema de gestión de sueldos por categorías de una planta de empleados. Se realizaron algunas  validaciones y construcción de métodos alternativos en los Repository. Se conectó a una base de datos MYSQL.
